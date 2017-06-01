@@ -47,4 +47,18 @@ public class BowlingGameTest {
 		assertEquals(2, score);
 	}
 	
+	@Test
+	public void rollingSpareThenOneScoresTwelve(){
+		//given
+		bg.roll(5);
+		bg.roll(5);
+		bg.roll(1);
+		
+		//when
+		final int score = bg.getScore();
+		
+		//then
+		assertEquals(12, score);
+	}
+	
 }
