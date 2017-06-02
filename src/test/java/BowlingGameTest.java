@@ -9,6 +9,17 @@ public class BowlingGameTest {
 	
 	public BowlingGame bg = new BowlingGame();
 	
+	private void rollSpare() {
+		bg.roll(5);
+		bg.roll(5);
+	}
+	
+	private void rollMany(int n, int pins) {
+		for(int i=0;i<n;i++){
+			bg.roll(pins);
+		}
+	}
+	
 	@Test
 	public void allMissesIsZero(){
 		//given
@@ -50,8 +61,7 @@ public class BowlingGameTest {
 	@Test
 	public void rollingSpareThenOneScoresTwelve(){
 		//given
-		bg.roll(5);
-		bg.roll(5);
+		rollSpare();
 		
 		bg.roll(1);
 		
@@ -64,12 +74,8 @@ public class BowlingGameTest {
 	
 	@Test
 	public void rollingTwoSparesThenOne() {
-		//give
-		bg.roll(5);
-		bg.roll(5);
-		
-		bg.roll(5);
-		bg.roll(5);
+		rollSpare();
+		rollSpare();
 		
 		bg.roll(1);
 		
@@ -98,18 +104,7 @@ public class BowlingGameTest {
 	@Test
 	public void allStrikesIsThreeHundred(){
 		//given
-		bg.roll(10);
-		bg.roll(10);
-		bg.roll(10);
-		bg.roll(10);
-		bg.roll(10);
-		bg.roll(10);
-		bg.roll(10);
-		bg.roll(10);
-		bg.roll(10);
-		bg.roll(10);
-		bg.roll(10);
-		bg.roll(10);
+		rollMany(12, 10);
 		
 		//when
 		final int score = bg.getScore();
@@ -119,4 +114,16 @@ public class BowlingGameTest {
 		
 	}
 	
+	@Test
+	public void twentyOneFivesIsOneHundredFifty(){
+		//given
+		rollMany(21, 5);
+		
+		//when
+		final int score = bg.getScore();
+		
+		//then
+		assertEquals(150, score);
+		
+	}
 }
