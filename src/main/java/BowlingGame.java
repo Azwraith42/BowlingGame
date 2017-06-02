@@ -39,7 +39,7 @@ public class BowlingGame {
 			else if(isSpare(rollIndex)){
 				score += 10 + spareBonus(rollIndex);
 			}else{
-				score += rolls[rollIndex] + rolls[rollIndex+1];
+				score += (rolls[rollIndex] + rolls[rollIndex+1]);
 			}
 		}
 		
