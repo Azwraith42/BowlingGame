@@ -52,6 +52,7 @@ public class BowlingGameTest {
 		//given
 		bg.roll(5);
 		bg.roll(5);
+		
 		bg.roll(1);
 		
 		//when
@@ -59,6 +60,63 @@ public class BowlingGameTest {
 		
 		//then
 		assertEquals(12, score);
+	}
+	
+	@Test
+	public void rollingTwoSparesThenOne() {
+		//give
+		bg.roll(5);
+		bg.roll(5);
+		
+		bg.roll(5);
+		bg.roll(5);
+		
+		bg.roll(1);
+		
+		//when
+		final int score = bg.getScore();
+		
+		//then
+		assertEquals(15+11+1, score);
+	}
+	
+	@Test
+	public void AStrikeThenOneThenTwoIsFourteen(){
+		//given
+		bg.roll(10);
+		
+		bg.roll(1);
+		bg.roll(2);
+		
+		//when
+		final int score = bg.getScore();
+		
+		//then
+		assertEquals(16, score);
+	}
+	
+	@Test
+	public void allStrikesIsThreeHundred(){
+		//given
+		bg.roll(10);
+		bg.roll(10);
+		bg.roll(10);
+		bg.roll(10);
+		bg.roll(10);
+		bg.roll(10);
+		bg.roll(10);
+		bg.roll(10);
+		bg.roll(10);
+		bg.roll(10);
+		bg.roll(10);
+		bg.roll(10);
+		
+		//when
+		final int score = bg.getScore();
+		
+		//then
+		assertEquals(300, score);
+		
 	}
 	
 }

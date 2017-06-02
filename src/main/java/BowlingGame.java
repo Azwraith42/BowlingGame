@@ -15,14 +15,33 @@ public class BowlingGame {
 		rolls[currentRoll++] = pins;
 	}
 	
+	private boolean isSpare(final int roll){
+		if(rolls[roll] + rolls[roll+1] == 10){
+			return true;
+		}	
+		return false;
+	}
+	
+	private boolean isStrike(final int roll){
+		if(rolls[roll] == 10){
+			return true;
+		}
+		return false;
+	}
+	
 	public int getScore() {
 		
-		for(int i=0; i<21; i++){
-			score += rolls[i];
-		}
-		
-		if(rolls[0] + rolls[1] == 10){
-			score += rolls[2];
+		int rollIndex = 0;
+		for(int frame = 0; frame < 10; frame++, rollIndex += 2){
+			if(isStrike(rollIndex)){
+				score += 10 + rolls[rollIndex+1] + rolls[rollIndex+2];
+				rollIndex--;
+			}
+			else if(isSpare(rollIndex)){
+				score += 10 + rolls[rollIndex+2];
+			}else{
+				score += rolls[rollIndex] + rolls[rollIndex+1];
+			}
 		}
 		
 		return score;
