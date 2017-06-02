@@ -31,8 +31,7 @@ public class BowlingGame {
 	
 	public int getScore() {
 		
-		int rollIndex = 0;
-		for(int frame = 0; frame < 10; frame++, rollIndex += 2){
+		for(int frame = 0, rollIndex = 0; frame < 10; frame++, rollIndex += 2){
 			if(isStrike(rollIndex)){
 				score += 10 + strikeBonus(rollIndex);
 				rollIndex--;
