@@ -34,17 +34,25 @@ public class BowlingGame {
 		int rollIndex = 0;
 		for(int frame = 0; frame < 10; frame++, rollIndex += 2){
 			if(isStrike(rollIndex)){
-				score += 10 + rolls[rollIndex+1] + rolls[rollIndex+2];
+				score += 10 + strikeBonus(rollIndex);
 				rollIndex--;
 			}
 			else if(isSpare(rollIndex)){
-				score += 10 + rolls[rollIndex+2];
+				score += 10 + spareBonus(rollIndex);
 			}else{
 				score += rolls[rollIndex] + rolls[rollIndex+1];
 			}
 		}
 		
 		return score;
+	}
+
+	private int strikeBonus(int rollIndex) {
+		return rolls[rollIndex+1] + spareBonus(rollIndex);
+	}
+
+	private int spareBonus(int rollIndex) {
+		return rolls[rollIndex+2];
 	}
 	
 }
